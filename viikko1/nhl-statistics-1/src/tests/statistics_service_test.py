@@ -39,3 +39,27 @@ class TestStatisticsService(unittest.TestCase):
         self.assertEqual(result[0].name, "Gretzky")
         self.assertEqual(result[1].name, "Lemieux")
         self.assertEqual(result[2].name, "Yzerman")
+
+    def test_top_with_points_parameter(self):
+        result = self.stats.top(3, 1)
+        self.assertEqual(result[0].name, "Gretzky")
+        self.assertEqual(result[1].name, "Lemieux")
+        self.assertEqual(result[2].name, "Yzerman")
+
+    def test_top_with_goals_parameter(self):
+        result = self.stats.top(3, 2)
+        self.assertEqual(result[0].name, "Lemieux")
+        self.assertEqual(result[1].name, "Yzerman")
+        self.assertEqual(result[2].name, "Kurri")
+
+    def test_top_with_assists_parameter(self):
+        result = self.stats.top(3, 3)
+        self.assertEqual(result[0].name, "Gretzky")
+        self.assertEqual(result[1].name, "Yzerman")
+        self.assertEqual(result[2].name, "Lemieux")
+
+    def test_top_with_incorrect_parameter(self):
+        result = self.stats.top(3, 20)
+        self.assertEqual(result[0].name, "Gretzky")
+        self.assertEqual(result[1].name, "Lemieux")
+        self.assertEqual(result[2].name, "Yzerman")

@@ -1,3 +1,9 @@
+from enum import IntEnum
+
+class SortBy(IntEnum):
+    POINTS = 1
+    GOALS = 2
+    ASSISTS = 3
 
 
 class StatisticsService:
@@ -19,15 +25,39 @@ class StatisticsService:
 
         return list(players_of_team)
 
-    def top(self, how_many):
-        def sort_by_points(player):
+    def top(self, how_many, sort_by_value=SortBy.POINTS):
+        def sort_by_points(player): 
             return player.points
+        def sort_by_goals(player):
+            return player.goals
+        def sort_by_assists(player):
+            return player.assists
 
-        sorted_players = sorted(
-            self._players,
-            reverse=True,
-            key=sort_by_points
-        )
+        match sort_by_value:
+            case SortBy.POINTS:
+                sorted_players = sorted(
+                    self._players,
+                    reverse=True,
+                    key=sort_by_points
+                )
+            case SortBy.GOALS:
+                sorted_players = sorted(
+                    self._players,
+                    reverse=True,
+                    key=sort_by_goals
+                )
+            case SortBy.ASSISTS:
+                sorted_players = sorted(
+                    self._players,
+                    reverse=True,
+                    key=sort_by_assists
+                )
+            case _:
+                sorted_players = sorted(
+                    self._players,
+                    reverse=True,
+                    key=sort_by_points
+                )
 
         result = []
         i = 0
