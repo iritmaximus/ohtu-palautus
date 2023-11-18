@@ -28,6 +28,19 @@ Register With Nonmatching Password And Password Confirmation
     Title Should Be  Register
     Page Should Contain  Password and confirmation don't match
 
+Login After Successful Registration
+    Create New User  martti  Unsecure1  Unsecure1
+    Go To Login Page
+    Login  martti  Unsecure1
+    Main Page Should Be Open
+
+Login After Failed Registration
+    Create New User  martti  unsecure  unsecure
+    Go To Login Page
+    Login  martti  unsecure
+    Login Page Should Be Open
+    Page Should Contain  Invalid username or password
+
 *** Keywords ***
 Create New User
     [Arguments]  ${username}  ${password}  ${password_confirmation}
@@ -35,6 +48,12 @@ Create New User
     Set Password  ${password}
     Set Password Confirmation  ${password_confirmation}
     Submit New Registration
+
+Login
+    [Arguments]  ${username}  ${password}
+    Set Username  ${username}
+    Set Password  ${password}
+    Submit Login
     
 
 Set Username
@@ -48,6 +67,9 @@ Set Password
 Set Password Confirmation
     [Arguments]  ${password_confirmation}
     Input Text  password_confirmation  ${password_confirmation}
+
+Submit Login
+    Click Button  Login
 
 Submit New Registration
     Click Button  Register
