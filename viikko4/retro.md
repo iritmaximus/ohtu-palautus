@@ -15,3 +15,4 @@ mukaan: Onnellinen, surullinen tai vihainen.
 Tämän jälkeen yhdessä äänestetään jokaisen lapun kohdalla, mistä halutaan keskustella lisää.
 Äänestettyä esim Scrummaster äänten mukaisessa järjestyksessä muodostaa keskustelua esille
 nousseista aiheista.
+:w
