@@ -43,8 +43,6 @@ def main():
         print(player)
 
 
-
-
     matcher = And(
         HasAtLeast(70, "points"),
         Or(
